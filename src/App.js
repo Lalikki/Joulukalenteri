@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Calendar from './components/Calendar';
-import About from './components/About';
+import About from './components/Landing';
 
 function App() {
   return (
@@ -12,11 +12,11 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Calendar />
+          <About />
         </Route>
 
-        <Route path="/about">
-          <About />
+        <Route path="/calendar">
+          <Calendar />
         </Route>
 
       </Switch>

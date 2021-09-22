@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap');
+
+:root {
+  --primary-white: #fff;
+  --primary-orange: #f9ab00;
+  --primary-dark: rgba(255, 255, 255, 0);
+  --primary-red: #ef4035;
+}
+
 .App {
   text-align: center;
 }
@@ -14,7 +23,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: orange;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,6 +35,36 @@
 
 .App-link {
   color: #61dafb;
+}
+
+/*NAVBAR*/
+nav ul li {
+  text-transform: uppercase;
+  color: var(--primary-white) !important;
+}
+
+.nav-link {
+  color: var(--primary-white) !important;
+}
+
+/*CALENDAR PAGE WRAPPER*/
+.calendar-wrapper {
+  background-color: gray;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+ 
+}
+
+/*ABOUT PAGE WRAPPER*/
+.about-wrapper {
+  background-color: gray;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+ 
 }
 
 @keyframes App-logo-spin {

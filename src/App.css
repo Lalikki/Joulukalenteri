@@ -53,8 +53,17 @@ nav ul li {
   position: relative;
   background-size: cover;
   background-position: center;
-  height: 90vh;
+  overflow: hidden;
+  /* height: 90vh; */
  
+}
+
+#content-card {
+ 
+}
+
+.content-paragraph {
+  text-align: center;
 }
 
 /*ABOUT PAGE WRAPPER*/
@@ -63,7 +72,7 @@ nav ul li {
   position: relative;
   background-size: cover;
   background-position: center;
-  height: 90vh;
+  /* height: 90vh; */
  
 }
 

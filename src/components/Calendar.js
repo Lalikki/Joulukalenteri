@@ -1,18 +1,62 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { calendarContent } from '../utils/CalendarContent';
 
 const Calendar = () => {
 
-    // const [selectedCard, setSelectedCard] = useState(calendarContent[0]);
 
     // function swapImage(e) {
     //     e.target.setAttribute('src', calendarContent.contentImage)
     // }
 
+    const calculateTimeLeft = () => {
+
+        let year = new Date().getFullYear();
+        let difference = +new Date(`12/24/${year}`) - +new Date();
+
+        let timeLeft = {};
+
+        if (difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60)
+            };
+        }
+
+        return timeLeft;
+    }
+
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    });
+    const timerComponents = [];
+
+    Object.keys(timeLeft).forEach((interval) => {
+        if (!timeLeft[interval]) {
+            return;
+        }
+
+        timerComponents.push(
+            <span>
+                {timeLeft[interval]} {interval}{" "}
+            </span>
+        );
+    });
+
     return (
         <div className="calendar-wrapper">
             <div className="container">
                 <h1>Joulunkalenteri</h1>
+
+                <h4>Päivää jouluun: {timerComponents.length ? timerComponents : <span>Time's up!</span>}</h4>
 
                 {/* Cards */}
 

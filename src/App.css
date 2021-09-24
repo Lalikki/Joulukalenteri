@@ -58,8 +58,11 @@ nav ul li {
  
 }
 
-#content-card {
- 
+.container h1 {
+  text-align: center;
+}
+.container h4 {
+  text-align: center;
 }
 
 .content-paragraph {

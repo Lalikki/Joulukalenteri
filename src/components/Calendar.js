@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { calendarContent } from '../utils/CalendarContent';
+import TimerComponent from '../utils/Timer';
+
+
 
 const Calendar = () => {
 
 
-    // function swapImage(e) {
-    //     e.target.setAttribute('src', calendarContent.contentImage)
-    // }
+
 
     const calculateTimeLeft = () => {
 
         let year = new Date().getFullYear();
         let difference = +new Date(`12/24/${year}`) - +new Date();
 
+        // for (var i = 1; i < 24; i++) {
+        //     difference = +new Date(`12/${i}/${year}`) - +new Date();
+
+        // }
+
         let timeLeft = {};
 
         if (difference > 0) {
             timeLeft = {
                 days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60)
+                // hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                // minutes: Math.floor((difference / 1000 / 60) % 60),
+                // seconds: Math.floor((difference / 1000) % 60)
             };
         }
 
@@ -51,6 +57,8 @@ const Calendar = () => {
         );
     });
 
+
+
     return (
         <div className="calendar-wrapper">
             <div className="container">
@@ -78,19 +86,24 @@ const Calendar = () => {
                                         <p className="card-text content-paragraph">{description}</p>
                                     </li>
                                     <li className="list-group-item">
-                                        <p className="card-text content-paragraph">Timer tähän?</p>
+
+                                        {/* <p className="card-text content-paragraph">{timerComponents.length ? timerComponents : <span>Saa avata!</span>}</p> */}
+                                        {/* {timerComponents.map(time => (
+                                            <p key={index}>{time}</p>
+                                        ))} */}
+                                        <div className="timer-component">
+                                            {/* <TimerComponent expiryTimestamp={time} /> */}
+                                        </div>
+
                                     </li>
                                 </ul>
-
-                                {/* <div className="card-body d-flex justify-content-center">
-                                    <a href="#" onClick={() => {
-                                        // document.getElementById('content-image').src = selectedCard.contentImage
-                                    }} className="btn btn-primary">Open</a>
-                                </div> */}
 
                             </div>
                         </div>
                     ))}
+
+
+
                 </div>
             </div>
         </div>

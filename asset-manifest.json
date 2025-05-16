@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/joulukalenteri/static/css/main.233fdc3c.chunk.css",
+    "main.js": "/joulukalenteri/static/js/main.2fb99bc1.chunk.js",
+    "main.js.map": "/joulukalenteri/static/js/main.2fb99bc1.chunk.js.map",
+    "runtime-main.js": "/joulukalenteri/static/js/runtime-main.c81cc208.js",
+    "runtime-main.js.map": "/joulukalenteri/static/js/runtime-main.c81cc208.js.map",
+    "static/css/2.10bcb7c7.chunk.css": "/joulukalenteri/static/css/2.10bcb7c7.chunk.css",
+    "static/js/2.091634a8.chunk.js": "/joulukalenteri/static/js/2.091634a8.chunk.js",
+    "static/js/2.091634a8.chunk.js.map": "/joulukalenteri/static/js/2.091634a8.chunk.js.map",
+    "index.html": "/joulukalenteri/index.html",
+    "static/css/2.10bcb7c7.chunk.css.map": "/joulukalenteri/static/css/2.10bcb7c7.chunk.css.map",
+    "static/css/main.233fdc3c.chunk.css.map": "/joulukalenteri/static/css/main.233fdc3c.chunk.css.map",
+    "static/js/2.091634a8.chunk.js.LICENSE.txt": "/joulukalenteri/static/js/2.091634a8.chunk.js.LICENSE.txt",
+    "static/media/2.502c4bd6.jpg": "/joulukalenteri/static/media/2.502c4bd6.jpg",
+    "static/media/present.6baca3cc.jpg": "/joulukalenteri/static/media/present.6baca3cc.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c81cc208.js",
+    "static/css/2.10bcb7c7.chunk.css",
+    "static/js/2.091634a8.chunk.js",
+    "static/css/main.233fdc3c.chunk.css",
+    "static/js/main.2fb99bc1.chunk.js"
+  ]
+}

@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { calendarContent } from '../utils/CalendarContent';
-import TimerComponent from '../utils/Timer';
+import CalendarDayCard from './CalendarDayCard';
 
+const SNOWFLAKES = 50;
 
+const getHelsinkiNow = () => {
+    // Get the current time in Europe/Helsinki timezone
+    return new Date(
+        new Date().toLocaleString('en-US', { timeZone: 'Europe/Helsinki' })
+    );
+};
 
 const Calendar = () => {
-
-
-
-
     const calculateTimeLeft = () => {
-
-        let year = new Date().getFullYear();
-        let difference = +new Date(`12/24/${year}`) - +new Date();
-
-        // for (var i = 1; i < 24; i++) {
-        //     difference = +new Date(`12/${i}/${year}`) - +new Date();
-
-        // }
-
+        let now = getHelsinkiNow();
+        let year = now.getFullYear();
+        // Target: start of December 24th, 00:00, in Helsinki time (UTC+2 for winter)
+        let target = new Date(`${year}-12-24T00:00:00+02:00`);
+        let difference = +target - +now;
         let timeLeft = {};
-
         if (difference > 0) {
             timeLeft = {
                 days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                // hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                // minutes: Math.floor((difference / 1000 / 60) % 60),
-                // seconds: Math.floor((difference / 1000) % 60)
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60),
             };
         }
-
         return timeLeft;
     }
 
@@ -38,76 +35,36 @@ const Calendar = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setTimeLeft(calculateTimeLeft());
-
         }, 1000);
-
         return () => clearTimeout(timer);
     });
-    const timerComponents = [];
 
-    Object.keys(timeLeft).forEach((interval) => {
-        if (!timeLeft[interval]) {
-            return;
-        }
+    const formatCountdown = (time) => {
+        if (!time.days && !time.hours && !time.minutes && !time.seconds) return '0 days, 0 hours, 0 minutes and 0 seconds';
+        return `${time.days} days, ${time.hours} hours, ${time.minutes} minutes and ${time.seconds} seconds`;
+    };
 
-        timerComponents.push(
-            <span>
-                {timeLeft[interval]} {interval}{" "}
-            </span>
-        );
-    });
-
-
+    // Only use the first 24 days for the 6x4 grid
+    const days = calendarContent.slice(0, 24);
 
     return (
-        <div className="calendar-wrapper">
-            <div className="container">
-                <h1>Joulunkalenteri</h1>
-
-                <h4>Päivää jouluun: {timerComponents.length ? timerComponents : <span>Time's up!</span>}</h4>
-
-                {/* Cards */}
-
-                <div className="row">
-                    {calendarContent.map(({ idd, title, description, image, contentImage }, index) => (
-
-                        <div key={index} className="col-sm-3 mb-3">
-
-                            <div id="content-card" className="card d-flex">
-                                <img src={image} onClick={(e) => {
-                                    e.target.setAttribute('src', contentImage)
-                                }} id="content-image" className="card-img-top" />
-
-                                <div className="card-body d-flex justify-content-center">
-                                    <h5 className="card-title">{title}</h5>
-                                </div>
-                                <ul className="list-group list-group-flush">
-                                    <li className="list-group-item">
-                                        <p className="card-text content-paragraph">{description}</p>
-                                    </li>
-                                    <li className="list-group-item">
-
-                                        {/* <p className="card-text content-paragraph">{timerComponents.length ? timerComponents : <span>Saa avata!</span>}</p> */}
-                                        {/* {timerComponents.map(time => (
-                                            <p key={index}>{time}</p>
-                                        ))} */}
-                                        <div className="timer-component">
-                                            {/* <TimerComponent expiryTimestamp={time} /> */}
-                                        </div>
-
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
+        <div className="calendar-wrapper calendar-house-bg">
+            <div className="calendar-bg-snow">
+                {Array.from({ length: SNOWFLAKES }).map((_, i) => (
+                    <div key={i} className="calendar-snowflake">❄️</div>
+                ))}
+            </div>
+            <div className="container calendar-center-content">
+                <h1>Konklaavin joulukalenteri 2025</h1>
+                <h4>{formatCountdown(timeLeft)}</h4>
+                <div className="calendar-grid-6x4">
+                    {days.map((day) => (
+                        <CalendarDayCard key={day.id} day={day} />
                     ))}
-
-
-
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Calendar;
